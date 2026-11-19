@@ -1,0 +1,115 @@
+TEST_RESULTS - Software Engineering Assignment #04
+Captured (UTC): 2026-11-08T07:48:39Z
+
+=== $ npm run test ===
+
+> vite-react-typescript-starter@0.0.0 test
+> vitest run
+
+
+ RUN  v2.1.9 /home/project
+
+ ✓ src/lib/canBook.spec.ts (46 tests) 9ms
+ ✓ src/App.spec.tsx (11 tests) 604ms
+ ✓ src/lib/canBook.boundaries.spec.ts (16 tests) 5ms
+ ✓ src/lib/roomFilter.spec.ts (10 tests) 4ms
+ ✓ src/lib/roomRules.spec.ts (4 tests) 3ms
+ ✓ src/lib/timeInput.spec.ts (4 tests) 3ms
+
+ Test Files  6 passed (6)
+      Tests  91 passed (91)
+   Start at  07:48:39
+   Duration  3.88s (transform 116ms, setup 224ms, collect 268ms, tests 628ms, environment 1.82s, prepare 331ms)
+
+exit code: 0
+
+=== $ npm run typecheck ===
+
+> vite-react-typescript-starter@0.0.0 typecheck
+> tsc --noEmit -p tsconfig.app.json
+
+exit code: 0
+
+=== $ npm run build ===
+
+> vite-react-typescript-starter@0.0.0 build
+> vite build
+
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 1574 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.71 kB │ gzip:  0.39 kB
+dist/assets/index-Bobqx8Bu.css   13.40 kB │ gzip:  3.22 kB
+dist/assets/index-BB_MdqZK.js   160.45 kB │ gzip: 51.70 kB
+✓ built in 1.50s
+exit code: 0
+
+=== $ npm run lint (extra, not a required deliverable) ===
+
+> vite-react-typescript-starter@0.0.0 lint
+> eslint .
+
+exit code: 0
+
+==================================================================
+RUN 2 - after final cleanup (footer, minute input, Supabase removal)
+Captured (UTC): 2026-11-08T08:07:21Z
+==================================================================
+
+=== $ npm run test ===
+
+> vite-react-typescript-starter@0.0.0 test
+> vitest run
+
+
+ RUN  v2.1.9 /home/project
+
+ ✓ src/lib/canBook.spec.ts (46 tests) 9ms
+ ✓ src/App.spec.tsx (14 tests) 709ms
+ ✓ src/lib/canBook.boundaries.spec.ts (16 tests) 6ms
+ ✓ src/lib/roomFilter.spec.ts (10 tests) 5ms
+ ✓ src/lib/timeInput.spec.ts (7 tests) 3ms
+ ✓ src/lib/roomRules.spec.ts (4 tests) 3ms
+
+ Test Files  6 passed (6)
+      Tests  97 passed (97)
+   Start at  08:07:21
+   Duration  4.04s (transform 121ms, setup 234ms, collect 276ms, tests 734ms, environment 1.83s, prepare 347ms)
+
+exit code: 0
+
+=== $ npm run typecheck ===
+
+> vite-react-typescript-starter@0.0.0 typecheck
+> tsc --noEmit -p tsconfig.app.json
+
+exit code: 0
+
+=== $ npm run lint ===
+
+> vite-react-typescript-starter@0.0.0 lint
+> eslint .
+
+exit code: 0
+
+=== $ npm run build ===
+
+> vite-react-typescript-starter@0.0.0 build
+> vite build
+
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 1574 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.71 kB │ gzip:  0.39 kB
+dist/assets/index-Bobqx8Bu.css   13.40 kB │ gzip:  3.22 kB
+dist/assets/index-DufyTkTO.js   160.76 kB │ gzip: 51.80 kB
+✓ built in 1.57s
+exit code: 0
+
+=== $ npm audit --omit=dev (informational, not fixed) ===
+found 0 vulnerabilities
+exit code: 0
