@@ -6,7 +6,7 @@ import {
   MAX_ROOM_LABEL_LEN,
   MAX_EXPLANATION_LEN,
 } from '@/lib/explainValidation';
-import type { ExplainRequest } from '@/lib/explainTypes';
+import type { AdapterMode, ExplainRequest } from '@/lib/explainTypes';
 
 const NOW = 540;
 
@@ -136,6 +136,33 @@ describe('validateResponse', () => {
 });
 
 describe('mockExplain', () => {
+  it.each([
+    ['timeout', true],
+    ['timeout', false],
+    ['error', true],
+    ['error', false],
+    ['unavailable', true],
+    ['unavailable', false],
+  ] as const)('returns a contract-valid fallback for %s with availability=%s', async (mode: AdapterMode, isAvailable) => {
+    const result = await mockExplain(isAvailable ? validReq : overlapReq, mode);
+    expect(result.ok).toBe(false);
+    expect(result.response).not.toBeNull();
+    expect(validateResponse(result.response!)).toEqual([]);
+    expect(result.response!.explanation).toContain(
+      isAvailable ? 'shown as available' : 'not available'
+    );
+    expect(result.error).toBeTruthy();
+  });
+
+  it('keeps a rejected-output fallback within the response contract', async () => {
+    // A valid label containing punctuation makes the generated text exceed two sentences.
+    const result = await mockExplain({ ...blockedReq, roomLabel: 'Room. A. B.' });
+    expect(result.ok).toBe(false);
+    expect(result.error).toBe('Response failed validation.');
+    expect(validateResponse(result.response!)).toEqual([]);
+    expect(result.response!.explanation).toContain('not available');
+  });
+
   it('returns an explanation for an available slot', async () => {
     const result = await mockExplain(validReq);
     expect(result.ok).toBe(true);

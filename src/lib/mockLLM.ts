@@ -6,7 +6,7 @@ function fallbackFor(req: ExplainRequest): string {
   if (req.isAvailable) {
     return 'The explanation service is unavailable. The room is shown as available — please rely on the confirmed status above.';
   }
-  return 'The explanation service is unavailable. The room is not available for the requested time. Please try a different time or room.';
+  return 'The explanation service is unavailable. The room is not available for the requested time; please try a different time or room.';
 }
 
 const explanations: Record<ReasonCode, (req: ExplainRequest) => string> = {
