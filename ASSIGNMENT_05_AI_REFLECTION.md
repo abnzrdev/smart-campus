@@ -5,7 +5,7 @@ ran the assistant's commands. Review and personalize it before submission. Only 
 between the markers counts toward the required 200–300 words.
 
 <!-- REFLECTION START -->
-I used Codex to help examine and improve my existing Smart Campus repository. The specific model was not independently verified. I supplied the repository, assignment branch, baseline commit, Phase 1 commit, preservation requirements, and instructions to separate observations from assumptions. This context helped keep the work focused on the existing application.
+I used Codex to help examine and improve my existing Smart Campus repository. The Codex model used was GPT-6.1 Sol. I supplied the repository, assignment branch, baseline commit, Phase 1 commit, preservation requirements, and instructions to separate observations from assumptions. This context helped keep the work focused on the existing application.
 
 The most useful suggestion was to test the explanation fallbacks against the same response validator used for normal output. This exposed a concrete inconsistency: unavailable fallbacks contained three sentences although the contract allowed only two. A small wording change resolved it without changing availability decisions.
 
