@@ -1,0 +1,26 @@
+
+> vite-react-typescript-starter@0.0.0 test
+> vitest run
+
+
+ RUN  v2.1.9 C:/Users/abnzr/Documents/Codex/2026-11-22/kbtu-software-engineering-assignment-05-prompt/work/smart-campus
+
+ ✓ src/lib/roomFilter.spec.ts (10 tests) 18ms
+ ✓ src/lib/roomRules.spec.ts (4 tests) 17ms
+ ✓ src/lib/canBook.boundaries.spec.ts (16 tests) 24ms
+ ✓ src/lib/timeInput.spec.ts (7 tests) 18ms
+ ✓ src/lib/canBook.spec.ts (47 tests) 55ms
+ ✓ src/lib/mockLLM.spec.ts (39 tests) 346ms
+ ✓ src/App.explanation.spec.tsx (8 tests) 2301ms
+   ✓ explanation request lifecycle with a delayed provider > discards a stale success after changing room 658ms
+ ✓ src/App.spec.tsx (19 tests) 5069ms
+   ✓ App (smoke) > reports Available for the touching 11:00–12:00 slot 466ms
+   ✓ App (smoke) > does not show a negative duration for reversed quick input 331ms
+   ✓ App (smoke) > shows an explanation for an overlap result 306ms
+   ✓ App (smoke) > shows an explanation for a blocked room 379ms
+   ✓ App (smoke) > clears the explanation when a new check is run 432ms
+
+ Test Files  8 passed (8)
+      Tests  150 passed (150)
+   Start at  20:19:15
+   Duration  15.37s (transform 975ms, setup 5.80s, collect 4.16s, tests 7.85s, environment 39.88s, prepare 15.98s)

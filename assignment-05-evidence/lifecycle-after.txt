@@ -1,0 +1,20 @@
+
+> vite-react-typescript-starter@0.0.0 test
+> vitest run src/App.explanation.spec.tsx src/App.spec.tsx
+
+
+ RUN  v2.1.9 C:/Users/abnzr/Documents/Codex/2026-11-22/kbtu-software-engineering-assignment-05-prompt/work/smart-campus
+
+ ✓ src/App.explanation.spec.tsx (8 tests) 2031ms
+   ✓ explanation request lifecycle with a delayed provider > discards a stale success after changing room 698ms
+ ✓ src/App.spec.tsx (19 tests) 4676ms
+   ✓ App (smoke) > reports Available for the touching 11:00–12:00 slot 416ms
+   ✓ App (smoke) > does not show a negative duration for reversed quick input 303ms
+   ✓ App (smoke) > shows an explanation for an overlap result 333ms
+   ✓ App (smoke) > shows an explanation for a blocked room 365ms
+   ✓ App (smoke) > clears the explanation when a new check is run 408ms
+
+ Test Files  2 passed (2)
+      Tests  27 passed (27)
+   Start at  20:16:25
+   Duration  10.72s (transform 457ms, setup 908ms, collect 2.12s, tests 6.71s, environment 4.50s, prepare 513ms)

@@ -1,0 +1,185 @@
+
+> vite-react-typescript-starter@0.0.0 test
+> vitest run src/lib/mockLLM.spec.ts src/App.explanation.spec.tsx
+
+
+ RUN  v2.1.9 C:/Users/abnzr/Documents/Codex/2026-11-22/kbtu-software-engineering-assignment-05-prompt/work/smart-campus
+
+ ❯ src/lib/mockLLM.spec.ts (39 tests | 4 failed) 379ms
+   × mockExplain > returns a contract-valid fallback for timeout with availability=false 87ms
+     → expected [ { field: 'explanation', …(1) } ] to deeply equal []
+   × mockExplain > returns a contract-valid fallback for error with availability=false 3ms
+     → expected [ { field: 'explanation', …(1) } ] to deeply equal []
+   × mockExplain > returns a contract-valid fallback for unavailable with availability=false 5ms
+     → expected [ { field: 'explanation', …(1) } ] to deeply equal []
+   × mockExplain > keeps a rejected-output fallback within the response contract 3ms
+     → expected [ { field: 'explanation', …(1) } ] to deeply equal []
+ ❯ src/App.explanation.spec.tsx (8 tests | 8 failed) 1831ms
+   × explanation request lifecycle with a delayed provider > discards a stale success after changing room 574ms
+     → expect(element).not.toBeInTheDocument()
+
+expected document not to contain element, found <p
+  class="mt-1 text-sm text-violet-900"
+>
+  Old room explanation.
+</p> instead
+   × explanation request lifecycle with a delayed provider > discards a stale success after changing time 202ms
+     → expect(element).not.toBeInTheDocument()
+
+expected document not to contain element, found <p
+  class="mt-1 text-sm text-violet-900"
+>
+  Old room explanation.
+</p> instead
+   × explanation request lifecycle with a delayed provider > discards a stale success after changing attendees 223ms
+     → expect(element).not.toBeInTheDocument()
+
+expected document not to contain element, found <p
+  class="mt-1 text-sm text-violet-900"
+>
+  Old room explanation.
+</p> instead
+   × explanation request lifecycle with a delayed provider > discards a stale success after changing equipment 181ms
+     → expect(element).not.toBeInTheDocument()
+
+expected document not to contain element, found <p
+  class="mt-1 text-sm text-violet-900"
+>
+  Old room explanation.
+</p> instead
+   × explanation request lifecycle with a delayed provider > discards a stale success after changing blocked 151ms
+     → expect(element).not.toBeInTheDocument()
+
+expected document not to contain element, found <p
+  class="mt-1 text-sm text-violet-900"
+>
+  Old room explanation.
+</p> instead
+   × explanation request lifecycle with a delayed provider > discards a stale success after changing new check 139ms
+     → expect(element).not.toBeInTheDocument()
+
+expected document not to contain element, found <p
+  class="mt-1 text-sm text-violet-900"
+>
+  Old room explanation.
+</p> instead
+   × explanation request lifecycle with a delayed provider > discards a stale rejection after a new check 195ms
+     → expect(element).not.toBeInTheDocument()
+
+expected document not to contain element, found <span
+  class="text-sm text-red-600"
+>
+  Unexpected error while generating explanation.
+</span> instead
+   × explanation request lifecycle with a delayed provider > keeps a newer request loading when the previous request completes 163ms
+     → expected null not to be null
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 12 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/App.explanation.spec.tsx > explanation request lifecycle with a delayed provider > discards a stale success after changing room
+ FAIL  src/App.explanation.spec.tsx > explanation request lifecycle with a delayed provider > discards a stale success after changing time
+ FAIL  src/App.explanation.spec.tsx > explanation request lifecycle with a delayed provider > discards a stale success after changing attendees
+ FAIL  src/App.explanation.spec.tsx > explanation request lifecycle with a delayed provider > discards a stale success after changing equipment
+ FAIL  src/App.explanation.spec.tsx > explanation request lifecycle with a delayed provider > discards a stale success after changing blocked
+ FAIL  src/App.explanation.spec.tsx > explanation request lifecycle with a delayed provider > discards a stale success after changing new check
+Error: expect(element).not.toBeInTheDocument()
+
+expected document not to contain element, found <p
+  class="mt-1 text-sm text-violet-900"
+>
+  Old room explanation.
+</p> instead
+ ❯ src/App.explanation.spec.tsx:52:61
+     50|     await act(async () => pending.resolve(oldResult));
+     51|
+     52|     expect(screen.queryByText('Old room explanation.')).not.toBeInTheD…
+       |                                                             ^
+     53|     expect(screen.getByRole('button', { name: 'Explain availability' }…
+     54|     expect(screen.getByText(['room', 'time', 'attendees', 'blocked'].i…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/12]⎯
+
+ FAIL  src/App.explanation.spec.tsx > explanation request lifecycle with a delayed provider > discards a stale rejection after a new check
+Error: expect(element).not.toBeInTheDocument()
+
+expected document not to contain element, found <span
+  class="text-sm text-red-600"
+>
+  Unexpected error while generating explanation.
+</span> instead
+ ❯ src/App.explanation.spec.tsx:65:86
+     63|     fireEvent.click(screen.getByRole('button', { name: 'Check availabi…
+     64|     await act(async () => pending.reject(new Error('Delayed provider f…
+     65|     expect(screen.queryByText('Unexpected error while generating expla…
+       |                                                                                      ^
+     66|     expect(screen.getByText('Unavailable')).toBeInTheDocument();
+     67|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/12]⎯
+
+ FAIL  src/App.explanation.spec.tsx > explanation request lifecycle with a delayed provider > keeps a newer request loading when the previous request completes
+AssertionError: expected null not to be null
+ ❯ src/App.explanation.spec.tsx:80:25
+     78|     fireEvent.click(screen.getByRole('button', { name: 'Check availabi…
+     79|     const explain = screen.queryByRole('button', { name: 'Explain avai…
+     80|     expect(explain).not.toBeNull();
+       |                         ^
+     81|     fireEvent.click(explain!);
+     82|     await act(async () => old.resolve(oldResult));
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/12]⎯
+
+ FAIL  src/lib/mockLLM.spec.ts > mockExplain > returns a contract-valid fallback for timeout with availability=false
+ FAIL  src/lib/mockLLM.spec.ts > mockExplain > returns a contract-valid fallback for error with availability=false
+ FAIL  src/lib/mockLLM.spec.ts > mockExplain > returns a contract-valid fallback for unavailable with availability=false
+AssertionError: expected [ { field: 'explanation', …(1) } ] to deeply equal []
+
+- Expected
++ Received
+
+- Array []
++ Array [
++   Object {
++     "field": "explanation",
++     "message": "explanation must be at most 2 sentences.",
++   },
++ ]
+
+ ❯ src/lib/mockLLM.spec.ts:150:48
+    148|     expect(result.ok).toBe(false);
+    149|     expect(result.response).not.toBeNull();
+    150|     expect(validateResponse(result.response!)).toEqual([]);
+       |                                                ^
+    151|     expect(result.response!.explanation).toContain(
+    152|       isAvailable ? 'shown as available' : 'not available'
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/12]⎯
+
+ FAIL  src/lib/mockLLM.spec.ts > mockExplain > keeps a rejected-output fallback within the response contract
+AssertionError: expected [ { field: 'explanation', …(1) } ] to deeply equal []
+
+- Expected
++ Received
+
+- Array []
++ Array [
++   Object {
++     "field": "explanation",
++     "message": "explanation must be at most 2 sentences.",
++   },
++ ]
+
+ ❯ src/lib/mockLLM.spec.ts:162:48
+    160|     expect(result.ok).toBe(false);
+    161|     expect(result.error).toBe('Response failed validation.');
+    162|     expect(validateResponse(result.response!)).toEqual([]);
+       |                                                ^
+    163|     expect(result.response!.explanation).toContain('not available');
+    164|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/12]⎯
+
+ Test Files  2 failed (2)
+      Tests  12 failed | 35 passed (47)
+   Start at  20:15:29
+   Duration  8.02s (transform 429ms, setup 996ms, collect 1.12s, tests 2.21s, environment 4.87s, prepare 535ms)
