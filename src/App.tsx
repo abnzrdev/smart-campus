@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Clock } from 'lucide-react';
 import { canBook, fmt } from '@/lib/canBook';
 import type { CheckResult } from '@/lib/canBook';
@@ -43,11 +43,23 @@ export default function App() {
   const [explaining, setExplaining] = useState(false);
   const [explanation, setExplanation] = useState<string | null>(null);
   const [explanationError, setExplanationError] = useState<string | null>(null);
+  const explanationVersion = useRef(0);
+
+  useEffect(() => () => {
+    explanationVersion.current += 1;
+  }, []);
+
+  function clearExplanation() {
+    // Invalidate pending responses as well as the text already on screen.
+    explanationVersion.current += 1;
+    setExplaining(false);
+    setExplanation(null);
+    setExplanationError(null);
+  }
 
   const finder = useRoomFinder(() => {
     setChecked(null);
-    setExplanation(null);
-    setExplanationError(null);
+    clearExplanation();
   });
   const { selectedRoom } = finder;
   const shownResult =
@@ -56,8 +68,7 @@ export default function App() {
   function updateTime(patch: Partial<TimeSelection>) {
     setTime((current) => ({ ...current, ...patch }));
     setChecked(null);
-    setExplanation(null);
-    setExplanationError(null);
+    clearExplanation();
   }
 
   function handleCheck() {
@@ -67,8 +78,7 @@ export default function App() {
       roomId: selectedRoom.id,
       result: canBook(selectedRoom, startMin, endMin),
     });
-    setExplanation(null);
-    setExplanationError(null);
+    clearExplanation();
   }
 
   async function handleExplain() {
@@ -90,12 +100,14 @@ export default function App() {
       return;
     }
 
+    const version = ++explanationVersion.current;
     setExplaining(true);
     setExplanation(null);
     setExplanationError(null);
 
     try {
       const result = await mockExplain(req);
+      if (version !== explanationVersion.current) return;
       if (result.response) {
         setExplanation(result.response.explanation);
       }
@@ -103,10 +115,11 @@ export default function App() {
         setExplanationError(result.error);
       }
     } catch {
+      if (version !== explanationVersion.current) return;
       setExplanation(null);
       setExplanationError('Unexpected error while generating explanation.');
     } finally {
-      setExplaining(false);
+      if (version === explanationVersion.current) setExplaining(false);
     }
   }
 
