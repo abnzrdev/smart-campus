@@ -1,7 +1,6 @@
 # Assignment 05 AI-use evidence
 
-Date: 2026-11-22, Asia/Qyzylorda. Tool: **Codex desktop**; actual model:
-**not independently verified**. Shell: PowerShell; Node v24.19.0, npm 11.17.0.
+Date: 2026-11-22, Asia/Qyzylorda. Tool: **Codex desktop**; model used, as specified by the student: **GPT-6.1 Sol**. Shell: PowerShell; Node v24.19.0, npm 11.17.0.
 All execution evidence is AI-run unless explicitly marked pending human verification.
 
 ## Prompt and output record
@@ -74,8 +73,10 @@ captured test output; text evidence copies were normalized without changing diag
 content, with originals retained outside the repo. This did not change code or require
 rerunning the final suite.
 
-**Human verification: pending.** No student command execution, screenshot capture, browser
-session, rubric approval, merge, Bolt redeployment, or production behavior verification
-is claimed. The student must personalize the reflection and complete the checklist.
+**Human code verification: pending.** No student command execution, full code-diff approval,
+rubric approval, merge, Bolt redeployment, or verification of the final GitHub fixes in a
+live deployment is claimed. The student subsequently supplied desktop-browser screenshots
+of the previously published Bolt version; those screenshots do not verify the Assignment #05
+changes. The student must review the reflection and complete the remaining checks.
 Git publication status is verified separately by normal push and remote SHA comparison;
 the publication receipt is delivered outside the commit so it can contain the final SHA.
